@@ -1,6 +1,5 @@
-
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Star } from "lucide-react";
+import { ShoppingCart, Star, ArrowRight } from "lucide-react";
 
 const products = [
   {
