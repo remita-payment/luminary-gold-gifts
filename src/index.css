@@ -5,26 +5,26 @@
 
 @layer base {
   :root {
-    --background: 0 0% 7%;
-    --foreground: 44 60% 92%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 44 60% 92%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 44 60% 92%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
 
     --primary: 46 65% 52%;
-    --primary-foreground: 0 0% 7%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 44 37% 90%;
     --secondary-foreground: 0 0% 7%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 46 10% 80%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 46 10% 40%;
 
     --accent: 46 65% 52%;
-    --accent-foreground: 0 0% 7%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -41,7 +41,7 @@
   }
 
   body {
-    @apply bg-dark text-cream-light font-poppins;
+    @apply bg-white text-foreground font-poppins;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -51,7 +51,7 @@
 
 @layer components {
   .hero-overlay {
-    @apply absolute inset-0 bg-gradient-to-b from-dark-darker/70 to-dark/90;
+    @apply absolute inset-0 bg-gradient-to-b from-gray-900/70 to-gray-800/90;
   }
   
   .section-title {
@@ -63,7 +63,7 @@
   }
   
   .product-card {
-    @apply bg-dark-light rounded-lg overflow-hidden border border-dark-darker hover:border-gold/50 transition-all duration-300;
+    @apply bg-white rounded-lg overflow-hidden border border-gray-100 shadow-sm hover:shadow-md hover:border-gold/30 transition-all duration-300;
   }
   
   .product-card:hover .product-image {
@@ -75,7 +75,7 @@
   }
   
   .btn-primary {
-    @apply bg-gold text-dark-darker font-medium py-2 px-4 rounded-md hover:bg-gold-dark transition-colors duration-300 inline-flex items-center justify-center;
+    @apply bg-gold text-white font-medium py-2 px-4 rounded-md hover:bg-gold-dark transition-colors duration-300 inline-flex items-center justify-center;
   }
   
   .btn-outline {
@@ -87,11 +87,11 @@
   }
 
   .category-card {
-    @apply bg-dark-light border border-dark-darker hover:border-gold/50 rounded-lg p-6 text-center transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:-translate-y-1;
+    @apply bg-white border border-gray-100 hover:border-gold/30 rounded-lg p-6 text-center transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:-translate-y-1;
   }
 
   .testimonial-card {
-    @apply bg-dark-light border border-dark-darker p-6 rounded-lg;
+    @apply bg-white border border-gray-100 p-6 rounded-lg shadow-sm;
   }
 }
 

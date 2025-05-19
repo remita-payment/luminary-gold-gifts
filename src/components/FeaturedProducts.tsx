@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Star } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCart } from "@/hooks/useCart";
 
@@ -236,56 +236,61 @@ const formatPrice = (price: number): string => {
 const FeaturedProducts = () => {
   const [activeTab, setActiveTab] = useState("all");
   const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   const handleAddToCart = (product: any) => {
     addToCart(product);
   };
 
+  const handleProductClick = (productId: number) => {
+    navigate(`/product/${productId}`);
+  };
+
   return (
-    <section id="products" className="py-20 bg-dark">
+    <section id="products" className="py-20 bg-white">
       <div className="container px-4 md:px-6">
         <h2 className="section-title">Featured Products</h2>
-        <p className="text-cream-light/80 mb-8 max-w-2xl">
+        <p className="text-gray-600 mb-8 max-w-2xl">
           Discover our curated selection of premium gifts, perfumes, and gift baskets. 
           Perfect for every occasion and crafted to impress.
         </p>
         
         <Tabs defaultValue="all" className="w-full mb-8" onValueChange={setActiveTab}>
           <div className="overflow-x-auto pb-2">
-            <TabsList className="inline-flex min-w-full md:grid md:grid-cols-6 bg-dark-light">
+            <TabsList className="inline-flex min-w-full md:grid md:grid-cols-6 bg-gray-50">
               <TabsTrigger 
                 value="all" 
-                className="data-[state=active]:bg-gold data-[state=active]:text-dark-darker"
+                className="data-[state=active]:bg-gold data-[state=active]:text-white"
               >
                 All Products
               </TabsTrigger>
               <TabsTrigger 
                 value="perfumes" 
-                className="data-[state=active]:bg-gold data-[state=active]:text-dark-darker"
+                className="data-[state=active]:bg-gold data-[state=active]:text-white"
               >
                 Perfumes
               </TabsTrigger>
               <TabsTrigger 
                 value="gifts" 
-                className="data-[state=active]:bg-gold data-[state=active]:text-dark-darker"
+                className="data-[state=active]:bg-gold data-[state=active]:text-white"
               >
                 Gift Sets
               </TabsTrigger>
               <TabsTrigger 
                 value="homeDecor" 
-                className="data-[state=active]:bg-gold data-[state=active]:text-dark-darker"
+                className="data-[state=active]:bg-gold data-[state=active]:text-white"
               >
                 Home Decor
               </TabsTrigger>
               <TabsTrigger 
                 value="corporate" 
-                className="data-[state=active]:bg-gold data-[state=active]:text-dark-darker"
+                className="data-[state=active]:bg-gold data-[state=active]:text-white"
               >
                 Corporate
               </TabsTrigger>
               <TabsTrigger 
                 value="personal" 
-                className="data-[state=active]:bg-gold data-[state=active]:text-dark-darker"
+                className="data-[state=active]:bg-gold data-[state=active]:text-white"
               >
                 Personal
               </TabsTrigger>
@@ -297,16 +302,14 @@ const FeaturedProducts = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {products.map((product) => (
                   <div key={product.id} className="product-card group">
-                    <div className="relative overflow-hidden">
-                      <Link to={`/product/${product.id}`}>
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="product-image"
-                        />
-                      </Link>
+                    <div className="relative overflow-hidden cursor-pointer" onClick={() => handleProductClick(product.id)}>
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="product-image"
+                      />
                       {product.isNew && (
-                        <div className="absolute top-4 left-4 bg-gold text-dark-darker px-2 py-1 text-xs font-medium rounded">
+                        <div className="absolute top-4 left-4 bg-gold text-white px-2 py-1 text-xs font-medium rounded">
                           New Arrival
                         </div>
                       )}
@@ -315,10 +318,13 @@ const FeaturedProducts = () => {
                           Sale
                         </div>
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-dark-darker to-transparent opacity-0 group-hover:opacity-60 transition-opacity"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-60 transition-opacity"></div>
                       <Button 
                         className="absolute bottom-4 left-1/2 transform -translate-x-1/2 translate-y-10 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 btn-primary"
-                        onClick={() => handleAddToCart(product)}
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevent navigation when clicking the button
+                          handleAddToCart(product);
+                        }}
                       >
                         <ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart
                       </Button>
@@ -330,17 +336,18 @@ const FeaturedProducts = () => {
                           <span className="ml-1 text-sm">{product.rating}</span>
                         </div>
                       </div>
-                      <Link to={`/product/${product.id}`}>
-                        <h3 className="font-playfair text-xl font-medium text-cream-light mb-1 hover:text-gold transition-colors">
-                          {product.name}
-                        </h3>
-                      </Link>
+                      <h3 
+                        className="font-playfair text-xl font-medium text-gray-800 mb-1 hover:text-gold transition-colors cursor-pointer"
+                        onClick={() => handleProductClick(product.id)}
+                      >
+                        {product.name}
+                      </h3>
                       <div className="flex items-center space-x-2">
                         <span className="text-gold font-medium">
                           {formatPrice(product.discountPrice || product.price)}
                         </span>
                         {product.discountPrice && (
-                          <span className="text-cream-light/60 line-through text-sm">
+                          <span className="text-gray-400 line-through text-sm">
                             {formatPrice(product.price)}
                           </span>
                         )}
