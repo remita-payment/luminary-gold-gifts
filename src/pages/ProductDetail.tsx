@@ -292,7 +292,7 @@ const ProductDetail = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-dark flex items-center justify-center">
+      <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-gold">Loading product details...</div>
       </div>
     );
@@ -300,11 +300,11 @@ const ProductDetail = () => {
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-dark flex flex-col">
+      <div className="min-h-screen bg-white flex flex-col">
         <Navbar />
         <div className="container mt-32 mb-20 flex-1 flex flex-col items-center justify-center">
           <h1 className="text-3xl text-gold mb-4">Product Not Found</h1>
-          <p className="text-cream-light mb-8">We couldn't find the product you're looking for.</p>
+          <p className="text-gray-700 mb-8">We couldn't find the product you're looking for.</p>
           <Link to="/">
             <Button className="btn-primary">
               Back to Home
@@ -318,21 +318,21 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-dark flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
       
       <main className="container mt-32 mb-20 flex-1">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Product Images */}
           <div className="space-y-4">
-            <div className="relative aspect-square overflow-hidden bg-dark-light rounded-lg border border-dark-darker">
+            <div className="relative aspect-square overflow-hidden bg-gray-50 rounded-lg border border-gray-200">
               <img
                 src={product.images?.[selectedImage] || product.image}
                 alt={product.name}
                 className="w-full h-full object-cover"
               />
               {product.isNew && (
-                <div className="absolute top-4 left-4 bg-gold text-dark-darker px-2 py-1 text-xs font-medium rounded">
+                <div className="absolute top-4 left-4 bg-gold text-white px-2 py-1 text-xs font-medium rounded">
                   New Arrival
                 </div>
               )}
@@ -350,7 +350,7 @@ const ProductDetail = () => {
                   <button
                     key={idx}
                     className={`w-20 h-20 rounded-md overflow-hidden border-2 ${
-                      selectedImage === idx ? "border-gold" : "border-dark-darker"
+                      selectedImage === idx ? "border-gold" : "border-gray-200"
                     }`}
                     onClick={() => setSelectedImage(idx)}
                   >
@@ -370,7 +370,7 @@ const ProductDetail = () => {
                   <span className="ml-1">{product.rating}</span>
                 </div>
               </div>
-              <h1 className="text-3xl md:text-4xl font-playfair font-medium text-cream-light">
+              <h1 className="text-3xl md:text-4xl font-playfair font-medium text-gray-900">
                 {product.name}
               </h1>
               
@@ -379,7 +379,7 @@ const ProductDetail = () => {
                   {formatPrice(product.discountPrice || product.price)}
                 </span>
                 {product.discountPrice && (
-                  <span className="text-xl text-cream-light/60 line-through">
+                  <span className="text-xl text-gray-500 line-through">
                     {formatPrice(product.price)}
                   </span>
                 )}
@@ -391,8 +391,8 @@ const ProductDetail = () => {
               </div>
             </div>
             
-            <div className="border-t border-dark-darker pt-6">
-              <p className="text-cream-light/80 leading-relaxed">
+            <div className="border-t border-gray-200 pt-6">
+              <p className="text-gray-700 leading-relaxed">
                 {product.description}
               </p>
               
@@ -401,7 +401,7 @@ const ProductDetail = () => {
                   <h3 className="font-medium text-gold mb-3">Features:</h3>
                   <ul className="space-y-2">
                     {product.features.map((feature: string, idx: number) => (
-                      <li key={idx} className="flex items-start text-cream-light/80">
+                      <li key={idx} className="flex items-start text-gray-700">
                         <span className="text-gold mr-2">•</span>
                         {feature}
                       </li>
@@ -411,27 +411,41 @@ const ProductDetail = () => {
               )}
             </div>
             
+            {/* Shipping Information */}
+            <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
+              <h3 className="font-medium text-gold mb-2">Shipping Information:</h3>
+              <p className="text-gray-700 text-sm mb-2">
+                Orders shipping within Damaturu will be delivered same day if placed before 4pm and next day if placed after 4pm.
+              </p>
+              <p className="text-gray-700 text-sm mb-2">
+                Orders shipping outside Lagos will be delivered within 3 days.
+              </p>
+              <p className="text-gray-700 text-sm">
+                Once your order is processed you will receive an email with progress updates.
+              </p>
+            </div>
+            
             {/* Quantity and Add to Cart */}
-            <div className="border-t border-dark-darker pt-6">
+            <div className="border-t border-gray-200 pt-6">
               <div className="flex flex-col md:flex-row md:items-center gap-4">
                 <div className="flex items-center">
-                  <span className="text-cream-light mr-4">Quantity:</span>
-                  <div className="flex items-center border border-dark-darker rounded-md overflow-hidden">
+                  <span className="text-gray-700 mr-4">Quantity:</span>
+                  <div className="flex items-center border border-gray-200 rounded-md overflow-hidden">
                     <Button 
                       variant="ghost" 
                       size="icon" 
-                      className="rounded-none h-10 w-10 text-cream-light hover:text-gold"
+                      className="rounded-none h-10 w-10 text-gray-700 hover:text-gold"
                       onClick={() => handleQuantityChange('decrease')}
                     >
                       <Minus className="h-4 w-4" />
                     </Button>
-                    <span className="w-10 text-center text-cream-light">
+                    <span className="w-10 text-center text-gray-700">
                       {quantity}
                     </span>
                     <Button 
                       variant="ghost" 
                       size="icon" 
-                      className="rounded-none h-10 w-10 text-cream-light hover:text-gold"
+                      className="rounded-none h-10 w-10 text-gray-700 hover:text-gold"
                       onClick={() => handleQuantityChange('increase')}
                     >
                       <Plus className="h-4 w-4" />
@@ -474,7 +488,7 @@ const ProductDetail = () => {
                       />
                     </Link>
                     {relatedProduct.isNew && (
-                      <div className="absolute top-4 left-4 bg-gold text-dark-darker px-2 py-1 text-xs font-medium rounded">
+                      <div className="absolute top-4 left-4 bg-gold text-white px-2 py-1 text-xs font-medium rounded">
                         New Arrival
                       </div>
                     )}
@@ -483,7 +497,7 @@ const ProductDetail = () => {
                         Sale
                       </div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark-darker to-transparent opacity-0 group-hover:opacity-60 transition-opacity"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/50 to-transparent opacity-0 group-hover:opacity-60 transition-opacity"></div>
                     <Button 
                       className="absolute bottom-4 left-1/2 transform -translate-x-1/2 translate-y-10 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 btn-primary"
                       onClick={() => addToCart({ ...relatedProduct, quantity: 1 })}
@@ -499,7 +513,7 @@ const ProductDetail = () => {
                       </div>
                     </div>
                     <Link to={`/product/${relatedProduct.id}`}>
-                      <h3 className="font-playfair text-xl font-medium text-cream-light mb-1 hover:text-gold transition-colors">
+                      <h3 className="font-playfair text-xl font-medium text-gray-900 mb-1 hover:text-gold transition-colors">
                         {relatedProduct.name}
                       </h3>
                     </Link>
@@ -508,7 +522,7 @@ const ProductDetail = () => {
                         {formatPrice(relatedProduct.discountPrice || relatedProduct.price)}
                       </span>
                       {relatedProduct.discountPrice && (
-                        <span className="text-cream-light/60 line-through text-sm">
+                        <span className="text-gray-500 line-through text-sm">
                           {formatPrice(relatedProduct.price)}
                         </span>
                       )}

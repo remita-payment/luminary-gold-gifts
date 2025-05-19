@@ -3,12 +3,10 @@ import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FeaturedProducts from "@/components/FeaturedProducts";
-import Categories from "@/components/Categories";
 import Testimonials from "@/components/Testimonials";
 import StoreLocation from "@/components/StoreLocation";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { ArrowRight } from "lucide-react";
 
 const Index = () => {
   useEffect(() => {
@@ -28,14 +26,13 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-dark">
+    <div className="min-h-screen bg-white">
       <Navbar />
       <Hero />
       <FeaturedProducts />
-      <Categories />
       
       {/* Benefits Section */}
-      <section className="py-16 bg-dark-darker">
+      <section className="py-16 bg-white">
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             <div className="flex flex-col items-center text-center">
@@ -56,7 +53,7 @@ const Index = () => {
                 </svg>
               </div>
               <h3 className="font-playfair text-xl text-gold mb-2">Premium Quality</h3>
-              <p className="text-cream-light/70">
+              <p className="text-gray-700">
                 All our gifts are carefully selected to ensure the highest quality and elegance.
               </p>
             </div>
@@ -80,7 +77,7 @@ const Index = () => {
                 </svg>
               </div>
               <h3 className="font-playfair text-xl text-gold mb-2">Secure Payments</h3>
-              <p className="text-cream-light/70">
+              <p className="text-gray-700">
                 Shop with confidence using our secure payment options and encryption.
               </p>
             </div>
@@ -109,7 +106,7 @@ const Index = () => {
                 </svg>
               </div>
               <h3 className="font-playfair text-xl text-gold mb-2">Gift Wrapping</h3>
-              <p className="text-cream-light/70">
+              <p className="text-gray-700">
                 Complimentary elegant gift wrapping service available for all purchases.
               </p>
             </div>
@@ -134,7 +131,7 @@ const Index = () => {
                 </svg>
               </div>
               <h3 className="font-playfair text-xl text-gold mb-2">Custom Orders</h3>
-              <p className="text-cream-light/70">
+              <p className="text-gray-700">
                 Special requirements? We can create custom gift packages just for you.
               </p>
             </div>

@@ -69,10 +69,10 @@ const Testimonials = () => {
   const visibleTestimonials = testimonials.slice(startIndex, startIndex + visibleCount);
   
   return (
-    <section id="testimonials" className="py-20 bg-dark">
+    <section id="testimonials" className="py-20 bg-white">
       <div className="container px-4 md:px-6">
         <h2 className="section-title">What Our Customers Say</h2>
-        <p className="text-cream-light/80 mb-10 max-w-2xl">
+        <p className="text-gray-700 mb-10 max-w-2xl">
           Don't just take our word for it. Here's what our valued customers have to say about their Luminary experience.
         </p>
         
@@ -86,19 +86,19 @@ const Testimonials = () => {
                   className="w-12 h-12 rounded-full mr-4 object-cover"
                 />
                 <div>
-                  <h4 className="font-medium text-cream-light">{testimonial.name}</h4>
-                  <p className="text-cream-light/70 text-sm">{testimonial.role}</p>
+                  <h4 className="font-medium text-gray-900">{testimonial.name}</h4>
+                  <p className="text-gray-600 text-sm">{testimonial.role}</p>
                 </div>
               </div>
               <div className="flex mb-3 text-gold">
                 {[...Array(5)].map((_, i) => (
                   <Star 
                     key={i} 
-                    className={`h-4 w-4 ${i < testimonial.stars ? "fill-gold" : "text-cream-light/30"}`}
+                    className={`h-4 w-4 ${i < testimonial.stars ? "fill-gold" : "text-gray-300"}`}
                   />
                 ))}
               </div>
-              <p className="text-cream-light/80">{testimonial.content}</p>
+              <p className="text-gray-700">{testimonial.content}</p>
             </div>
           ))}
         </div>
