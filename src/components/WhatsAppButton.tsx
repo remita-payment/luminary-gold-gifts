@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { WhatsApp, X } from "lucide-react";
+import { MessageCircle, X } from "lucide-react";
 
 const WhatsAppButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +19,7 @@ const WhatsAppButton = () => {
         <div className="bg-white rounded-lg shadow-lg p-4 mb-4 w-72 animate-in slide-in-from-right">
           <div className="flex justify-between items-center mb-4">
             <div className="flex items-center">
-              <WhatsApp className="h-6 w-6 text-green-500 mr-2" />
+              <MessageCircle className="h-6 w-6 text-green-500 mr-2" />
               <h3 className="font-medium text-gray-800">Chat with us</h3>
             </div>
             <Button 
@@ -38,7 +38,7 @@ const WhatsAppButton = () => {
             className="w-full bg-green-500 hover:bg-green-600 text-white"
             onClick={handleWhatsAppChat}
           >
-            <WhatsApp className="mr-2 h-4 w-4" />
+            <MessageCircle className="mr-2 h-4 w-4" />
             Start Chat
           </Button>
         </div>
@@ -49,7 +49,7 @@ const WhatsAppButton = () => {
         className={`h-14 w-14 rounded-full shadow-lg ${isOpen ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'}`}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? <X className="h-6 w-6" /> : <WhatsApp className="h-6 w-6" />}
+        {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
       </Button>
     </div>
   );
