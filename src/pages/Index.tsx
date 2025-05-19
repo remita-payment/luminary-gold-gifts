@@ -7,6 +7,7 @@ import Categories from "@/components/Categories";
 import Testimonials from "@/components/Testimonials";
 import StoreLocation from "@/components/StoreLocation";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { ArrowRight } from "lucide-react";
 
 const Index = () => {
@@ -144,6 +145,7 @@ const Index = () => {
       <Testimonials />
       <StoreLocation />
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };
