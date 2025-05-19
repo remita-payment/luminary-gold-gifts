@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Star, ArrowRight } from "lucide-react";
+import { ShoppingCart, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCart } from "@/hooks/useCart";
@@ -14,17 +14,19 @@ const productsByCategory = {
       name: "Royal Amber Perfume",
       price: 12500,
       discountPrice: 9999,
-      image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format",
+      image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=400&auto=format",
       rating: 4.8,
       isNew: true,
+      category: "perfumes",
       description: "A luxurious fragrance with notes of amber, vanilla and sandalwood that lasts all day.",
     },
     {
       id: 2,
       name: "Luxury Gift Basket",
       price: 18500,
-      image: "https://images.unsplash.com/photo-1549465220-6396a6ff20de?q=80&w=800&auto=format",
+      image: "https://images.unsplash.com/photo-1549465220-6396a6ff20de?q=80&w=400&auto=format",
       rating: 4.9,
+      category: "gifts",
       description: "An exquisite collection of gourmet treats, chocolates and premium items presented in an elegant basket.",
     },
     {
@@ -32,17 +34,19 @@ const productsByCategory = {
       name: "Crystal Celebration Set",
       price: 15000,
       discountPrice: 12500,
-      image: "https://images.unsplash.com/photo-1563170351-be82bc888aa4?q=80&w=800&auto=format",
+      image: "https://images.unsplash.com/photo-1563170351-be82bc888aa4?q=80&w=400&auto=format",
       rating: 4.7,
+      category: "homeDecor",
       description: "Beautiful crystal glasses and decorative items perfect for celebrations and special occasions.",
     },
     {
       id: 4,
       name: "Artisan Chocolate Box",
       price: 8500,
-      image: "https://images.unsplash.com/photo-1621263764928-df1444c5c384?q=80&w=800&auto=format",
+      image: "https://images.unsplash.com/photo-1621263764928-df1444c5c384?q=80&w=400&auto=format",
       rating: 4.6,
       isNew: true,
+      category: "gifts",
       description: "Handcrafted chocolate selection featuring unique flavors from around the world.",
     },
     {
@@ -50,16 +54,18 @@ const productsByCategory = {
       name: "Handcrafted Jewelry Box",
       price: 22000,
       discountPrice: 18500,
-      image: "https://images.unsplash.com/photo-1584811644165-33078f50eb15?q=80&w=800&auto=format",
+      image: "https://images.unsplash.com/photo-1584811644165-33078f50eb15?q=80&w=400&auto=format",
       rating: 4.9,
+      category: "homeDecor",
       description: "Beautifully designed wooden jewelry box with intricate details and premium finish.",
     },
     {
       id: 6,
       name: "Premium Wine Hamper",
       price: 32000,
-      image: "https://images.unsplash.com/photo-1543570321-acf0f90ccc11?q=80&w=800&auto=format",
+      image: "https://images.unsplash.com/photo-1543570321-acf0f90ccc11?q=80&w=400&auto=format",
       rating: 4.8,
+      category: "corporate",
       description: "Selection of fine wines paired with gourmet cheeses and crackers in an elegant hamper.",
     },
   ],
@@ -69,17 +75,19 @@ const productsByCategory = {
       name: "Royal Amber Perfume",
       price: 12500,
       discountPrice: 9999,
-      image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format",
+      image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=400&auto=format",
       rating: 4.8,
       isNew: true,
+      category: "perfumes",
       description: "A luxurious fragrance with notes of amber, vanilla and sandalwood that lasts all day.",
     },
     {
       id: 7,
       name: "Midnight Rose Perfume",
       price: 14500,
-      image: "https://images.unsplash.com/photo-1563170352-58ec7a91ad53?q=80&w=800&auto=format",
+      image: "https://images.unsplash.com/photo-1563170352-58ec7a91ad53?q=80&w=400&auto=format",
       rating: 4.7,
+      category: "perfumes",
       description: "An enchanting floral fragrance with deep rose notes and subtle hints of musk.",
     },
     {
@@ -87,8 +95,9 @@ const productsByCategory = {
       name: "Ocean Breeze Cologne",
       price: 11000,
       discountPrice: 9500,
-      image: "https://images.unsplash.com/photo-1615529162924-f8605388461d?q=80&w=800&auto=format",
+      image: "https://images.unsplash.com/photo-1615529162924-f8605388461d?q=80&w=400&auto=format",
       rating: 4.5,
+      category: "perfumes",
       description: "A fresh and invigorating scent with marine notes that evoke coastal breezes.",
     },
   ],
@@ -97,17 +106,19 @@ const productsByCategory = {
       id: 2,
       name: "Luxury Gift Basket",
       price: 18500,
-      image: "https://images.unsplash.com/photo-1549465220-6396a6ff20de?q=80&w=800&auto=format",
+      image: "https://images.unsplash.com/photo-1549465220-6396a6ff20de?q=80&w=400&auto=format",
       rating: 4.9,
+      category: "gifts",
       description: "An exquisite collection of gourmet treats, chocolates and premium items presented in an elegant basket.",
     },
     {
       id: 4,
       name: "Artisan Chocolate Box",
       price: 8500,
-      image: "https://images.unsplash.com/photo-1621263764928-df1444c5c384?q=80&w=800&auto=format",
+      image: "https://images.unsplash.com/photo-1621263764928-df1444c5c384?q=80&w=400&auto=format",
       rating: 4.6,
       isNew: true,
+      category: "gifts",
       description: "Handcrafted chocolate selection featuring unique flavors from around the world.",
     },
     {
@@ -115,8 +126,9 @@ const productsByCategory = {
       name: "Spa Gift Set",
       price: 16500,
       discountPrice: 14000,
-      image: "https://images.unsplash.com/photo-1570194065650-d99fb4abbd90?q=80&w=800&auto=format",
+      image: "https://images.unsplash.com/photo-1570194065650-d99fb4abbd90?q=80&w=400&auto=format",
       rating: 4.8,
+      category: "gifts",
       description: "Premium collection of bath oils, lotions, and aromatherapy products for relaxation.",
     },
   ],
@@ -126,8 +138,9 @@ const productsByCategory = {
       name: "Crystal Celebration Set",
       price: 15000,
       discountPrice: 12500,
-      image: "https://images.unsplash.com/photo-1563170351-be82bc888aa4?q=80&w=800&auto=format",
+      image: "https://images.unsplash.com/photo-1563170351-be82bc888aa4?q=80&w=400&auto=format",
       rating: 4.7,
+      category: "homeDecor",
       description: "Beautiful crystal glasses and decorative items perfect for celebrations and special occasions.",
     },
     {
@@ -135,19 +148,81 @@ const productsByCategory = {
       name: "Handcrafted Jewelry Box",
       price: 22000,
       discountPrice: 18500,
-      image: "https://images.unsplash.com/photo-1584811644165-33078f50eb15?q=80&w=800&auto=format",
+      image: "https://images.unsplash.com/photo-1584811644165-33078f50eb15?q=80&w=400&auto=format",
       rating: 4.9,
+      category: "homeDecor",
       description: "Beautifully designed wooden jewelry box with intricate details and premium finish.",
     },
     {
       id: 10,
       name: "Luxury Candle Set",
       price: 9500,
-      image: "https://images.unsplash.com/photo-1596433809252-61d909c8525d?q=80&w=800&auto=format",
+      image: "https://images.unsplash.com/photo-1596433809252-61d909c8525d?q=80&w=400&auto=format",
       rating: 4.6,
+      category: "homeDecor",
       description: "Set of artisanal scented candles in elegant containers perfect for creating ambiance.",
     },
-  ]
+  ],
+  corporate: [
+    {
+      id: 6,
+      name: "Premium Wine Hamper",
+      price: 32000,
+      image: "https://images.unsplash.com/photo-1543570321-acf0f90ccc11?q=80&w=400&auto=format",
+      rating: 4.8,
+      category: "corporate",
+      description: "Selection of fine wines paired with gourmet cheeses and crackers in an elegant hamper.",
+    },
+    {
+      id: 11,
+      name: "Executive Pen Set",
+      price: 12500,
+      image: "https://images.unsplash.com/photo-1583338917491-82e52cc4aa88?q=80&w=400&auto=format",
+      rating: 4.7,
+      category: "corporate",
+      description: "Premium fountain pen set with custom engraving options for corporate gifting.",
+    },
+    {
+      id: 12,
+      name: "Business Card Holder",
+      price: 8000,
+      image: "https://images.unsplash.com/photo-1603009141191-0e6b4d5b5e87?q=80&w=400&auto=format",
+      rating: 4.5,
+      category: "corporate",
+      description: "Elegant metal business card holder with leather accents, perfect for professionals.",
+    },
+  ],
+  personal: [
+    {
+      id: 9,
+      name: "Spa Gift Set",
+      price: 16500,
+      discountPrice: 14000,
+      image: "https://images.unsplash.com/photo-1570194065650-d99fb4abbd90?q=80&w=400&auto=format",
+      rating: 4.8,
+      category: "personal",
+      description: "Premium collection of bath oils, lotions, and aromatherapy products for relaxation.",
+    },
+    {
+      id: 13,
+      name: "Luxury Leather Wallet",
+      price: 15000,
+      image: "https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=400&auto=format",
+      rating: 4.8,
+      category: "personal",
+      description: "Handcrafted genuine leather wallet with multiple compartments and premium stitching.",
+    },
+    {
+      id: 14,
+      name: "Designer Watch",
+      price: 35000,
+      discountPrice: 29999,
+      image: "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?q=80&w=400&auto=format",
+      rating: 4.9,
+      category: "personal",
+      description: "Elegant wristwatch with stainless steel band and precision quartz movement.",
+    },
+  ],
 };
 
 const formatPrice = (price: number): string => {
@@ -176,32 +251,46 @@ const FeaturedProducts = () => {
         </p>
         
         <Tabs defaultValue="all" className="w-full mb-8" onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-dark-light">
-            <TabsTrigger 
-              value="all" 
-              className="data-[state=active]:bg-gold data-[state=active]:text-dark-darker"
-            >
-              All Products
-            </TabsTrigger>
-            <TabsTrigger 
-              value="perfumes" 
-              className="data-[state=active]:bg-gold data-[state=active]:text-dark-darker"
-            >
-              Perfumes
-            </TabsTrigger>
-            <TabsTrigger 
-              value="gifts" 
-              className="data-[state=active]:bg-gold data-[state=active]:text-dark-darker"
-            >
-              Gift Sets
-            </TabsTrigger>
-            <TabsTrigger 
-              value="homeDecor" 
-              className="data-[state=active]:bg-gold data-[state=active]:text-dark-darker"
-            >
-              Home Decor
-            </TabsTrigger>
-          </TabsList>
+          <div className="overflow-x-auto pb-2">
+            <TabsList className="inline-flex min-w-full md:grid md:grid-cols-6 bg-dark-light">
+              <TabsTrigger 
+                value="all" 
+                className="data-[state=active]:bg-gold data-[state=active]:text-dark-darker"
+              >
+                All Products
+              </TabsTrigger>
+              <TabsTrigger 
+                value="perfumes" 
+                className="data-[state=active]:bg-gold data-[state=active]:text-dark-darker"
+              >
+                Perfumes
+              </TabsTrigger>
+              <TabsTrigger 
+                value="gifts" 
+                className="data-[state=active]:bg-gold data-[state=active]:text-dark-darker"
+              >
+                Gift Sets
+              </TabsTrigger>
+              <TabsTrigger 
+                value="homeDecor" 
+                className="data-[state=active]:bg-gold data-[state=active]:text-dark-darker"
+              >
+                Home Decor
+              </TabsTrigger>
+              <TabsTrigger 
+                value="corporate" 
+                className="data-[state=active]:bg-gold data-[state=active]:text-dark-darker"
+              >
+                Corporate
+              </TabsTrigger>
+              <TabsTrigger 
+                value="personal" 
+                className="data-[state=active]:bg-gold data-[state=active]:text-dark-darker"
+              >
+                Personal
+              </TabsTrigger>
+            </TabsList>
+          </div>
           
           {Object.entries(productsByCategory).map(([category, products]) => (
             <TabsContent key={category} value={category} className="mt-6">
@@ -263,12 +352,6 @@ const FeaturedProducts = () => {
             </TabsContent>
           ))}
         </Tabs>
-        
-        <div className="flex justify-center mt-12">
-          <Button className="btn-outline">
-            View All Products <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </div>
       </div>
     </section>
   );
