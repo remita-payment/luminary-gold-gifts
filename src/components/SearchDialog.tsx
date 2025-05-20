@@ -34,11 +34,11 @@ const SearchDialog = ({ isOpen, onClose }: SearchDialogProps) => {
     }
 
     const query = searchQuery.toLowerCase();
-    const results = products.filter((product) =>
+    const filteredResults = products.filter((product) =>
       product.name.toLowerCase().includes(query)
     ).slice(0, 5); // Limit to 5 results
 
-    setSearchResults(results);
+    setSearchResults(filteredResults);
   }, [searchQuery]);
 
   const handleSelectProduct = (productId: string) => {
@@ -68,7 +68,7 @@ const SearchDialog = ({ isOpen, onClose }: SearchDialogProps) => {
           <CommandEmpty className="py-6 text-center text-sm">
             {searchQuery.trim() ? "No products found." : "Type to search products..."}
           </CommandEmpty>
-          {searchResults.length > 0 && (
+          {searchResults && searchResults.length > 0 && (
             <CommandGroup className="max-h-[300px] overflow-y-auto p-2">
               {searchResults.map((product) => (
                 <CommandItem
