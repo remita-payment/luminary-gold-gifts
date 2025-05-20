@@ -14,6 +14,12 @@ const Navbar = () => {
   const { cartItems } = useCart();
   const [user, setUser] = useState<any>(null);
 
+  // Check if we're on a product detail page (white bg page)
+  const isProductPage = location.pathname.includes('/product/');
+  const isCartPage = location.pathname.includes('/cart');
+  const isCheckoutPage = location.pathname.includes('/checkout');
+  const isWhiteBgPage = isProductPage || isCartPage || isCheckoutPage;
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -48,7 +54,9 @@ const Navbar = () => {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-dark-darker shadow-md py-2" : "bg-transparent py-4"
+        isScrolled 
+          ? isWhiteBgPage ? "bg-black shadow-md py-2" : "bg-dark-darker shadow-md py-2" 
+          : isWhiteBgPage ? "bg-black py-4" : "bg-transparent py-4"
       )}
     >
       <div className="container flex justify-between items-center">
@@ -62,16 +70,13 @@ const Navbar = () => {
           <Link to="/" className="text-cream-light hover:text-gold transition-colors">
             Home
           </Link>
-          <a href="#products" className="text-cream-light hover:text-gold transition-colors">
+          <a href="/#products" className="text-cream-light hover:text-gold transition-colors">
             Products
           </a>
-          <a href="#categories" className="text-cream-light hover:text-gold transition-colors">
-            Categories
-          </a>
-          <a href="#testimonials" className="text-cream-light hover:text-gold transition-colors">
+          <a href="/#testimonials" className="text-cream-light hover:text-gold transition-colors">
             Testimonials
           </a>
-          <a href="#contact" className="text-cream-light hover:text-gold transition-colors">
+          <a href="/#contact" className="text-cream-light hover:text-gold transition-colors">
             Contact
           </a>
         </nav>
@@ -147,28 +152,21 @@ const Navbar = () => {
             Home
           </Link>
           <a 
-            href="#products" 
+            href="/#products" 
             className="text-xl text-cream-light hover:text-gold transition-colors"
             onClick={closeMobileMenu}
           >
             Products
           </a>
           <a 
-            href="#categories" 
-            className="text-xl text-cream-light hover:text-gold transition-colors"
-            onClick={closeMobileMenu}
-          >
-            Categories
-          </a>
-          <a 
-            href="#testimonials" 
+            href="/#testimonials" 
             className="text-xl text-cream-light hover:text-gold transition-colors"
             onClick={closeMobileMenu}
           >
             Testimonials
           </a>
           <a 
-            href="#contact" 
+            href="/#contact" 
             className="text-xl text-cream-light hover:text-gold transition-colors"
             onClick={closeMobileMenu}
           >

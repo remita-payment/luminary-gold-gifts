@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Minus, Plus, Star } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -11,6 +11,7 @@ import { toast } from "@/hooks/use-toast";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [product, setProduct] = useState<any>(null);
   const [relatedProducts, setRelatedProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -19,6 +20,9 @@ const ProductDetail = () => {
   const { addToCart } = useCart();
   
   useEffect(() => {
+    // Reset quantity when product changes
+    setQuantity(1);
+    
     // Simulate API call to fetch product details
     const getProductDetails = async () => {
       setLoading(true);
@@ -282,6 +286,10 @@ const ProductDetail = () => {
     }
   };
 
+  const handleRelatedProductClick = (productId: number) => {
+    navigate(`/product/${productId}`);
+  };
+
   const formatPrice = (price: number): string => {
     return new Intl.NumberFormat('en-NG', {
       style: 'currency',
@@ -480,13 +488,16 @@ const ProductDetail = () => {
               {relatedProducts.map((relatedProduct) => (
                 <div key={relatedProduct.id} className="product-card group">
                   <div className="relative overflow-hidden">
-                    <Link to={`/product/${relatedProduct.id}`}>
+                    <div
+                      onClick={() => handleRelatedProductClick(relatedProduct.id)}
+                      className="cursor-pointer"
+                    >
                       <img
                         src={relatedProduct.image}
                         alt={relatedProduct.name}
                         className="product-image"
                       />
-                    </Link>
+                    </div>
                     {relatedProduct.isNew && (
                       <div className="absolute top-4 left-4 bg-gold text-white px-2 py-1 text-xs font-medium rounded">
                         New Arrival
@@ -512,11 +523,14 @@ const ProductDetail = () => {
                         <span className="ml-1 text-sm">{relatedProduct.rating}</span>
                       </div>
                     </div>
-                    <Link to={`/product/${relatedProduct.id}`}>
+                    <div 
+                      className="cursor-pointer"
+                      onClick={() => handleRelatedProductClick(relatedProduct.id)}
+                    >
                       <h3 className="font-playfair text-xl font-medium text-gray-900 mb-1 hover:text-gold transition-colors">
                         {relatedProduct.name}
                       </h3>
-                    </Link>
+                    </div>
                     <div className="flex items-center space-x-2">
                       <span className="text-gold font-medium">
                         {formatPrice(relatedProduct.discountPrice || relatedProduct.price)}

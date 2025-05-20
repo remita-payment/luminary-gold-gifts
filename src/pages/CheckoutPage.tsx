@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -115,16 +114,16 @@ const CheckoutPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-dark flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
       
       <main className="container mt-32 mb-20 flex-1 px-4 md:px-6">
         <h1 className="text-3xl font-playfair font-semibold text-gold mb-8">Checkout</h1>
         
         {cartItems.length === 0 ? (
-          <div className="text-center py-16 bg-dark-light rounded-lg border border-dark-darker">
-            <h2 className="text-2xl font-playfair text-cream-light mb-4">Your cart is empty</h2>
-            <p className="text-cream-light/70 mb-8">
+          <div className="text-center py-16 bg-gray-50 rounded-lg border border-gray-200">
+            <h2 className="text-2xl font-playfair text-gray-700 mb-4">Your cart is empty</h2>
+            <p className="text-gray-500 mb-8">
               Please add some products to your cart before proceeding to checkout.
             </p>
             <Link to="/">
@@ -136,7 +135,7 @@ const CheckoutPage = () => {
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
-              <div className="bg-dark-light rounded-lg border border-dark-darker p-6 mb-8">
+              <div className="bg-white rounded-lg border border-gray-200 p-6 mb-8">
                 <h2 className="text-xl font-playfair font-medium text-gold mb-6">Shipping Information</h2>
                 
                 <Form {...form}>
@@ -147,11 +146,11 @@ const CheckoutPage = () => {
                         name="firstName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-cream-light">First Name</FormLabel>
+                            <FormLabel className="text-gray-700">First Name</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="John"
-                                className="bg-dark-darker text-cream-light"
+                                className="bg-white border-gray-300 text-gray-700"
                                 disabled={isProcessing}
                                 {...field}
                               />
@@ -166,11 +165,11 @@ const CheckoutPage = () => {
                         name="lastName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-cream-light">Last Name</FormLabel>
+                            <FormLabel className="text-gray-700">Last Name</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="Doe"
-                                className="bg-dark-darker text-cream-light"
+                                className="bg-white border-gray-300 text-gray-700"
                                 disabled={isProcessing}
                                 {...field}
                               />
@@ -187,11 +186,11 @@ const CheckoutPage = () => {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-cream-light">Email</FormLabel>
+                            <FormLabel className="text-gray-700">Email</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="you@example.com"
-                                className="bg-dark-darker text-cream-light"
+                                className="bg-white border-gray-300 text-gray-700"
                                 disabled={isProcessing}
                                 {...field}
                               />
@@ -206,11 +205,11 @@ const CheckoutPage = () => {
                         name="phone"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-cream-light">Phone Number</FormLabel>
+                            <FormLabel className="text-gray-700">Phone Number</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="08012345678"
-                                className="bg-dark-darker text-cream-light"
+                                className="bg-white border-gray-300 text-gray-700"
                                 disabled={isProcessing}
                                 {...field}
                               />
@@ -226,11 +225,11 @@ const CheckoutPage = () => {
                       name="address"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-cream-light">Address</FormLabel>
+                          <FormLabel className="text-gray-700">Address</FormLabel>
                           <FormControl>
                             <Input
                               placeholder="123 Main Street"
-                              className="bg-dark-darker text-cream-light"
+                              className="bg-white border-gray-300 text-gray-700"
                               disabled={isProcessing}
                               {...field}
                             />
@@ -246,11 +245,11 @@ const CheckoutPage = () => {
                         name="city"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-cream-light">City</FormLabel>
+                            <FormLabel className="text-gray-700">City</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="Damaturu"
-                                className="bg-dark-darker text-cream-light"
+                                className="bg-white border-gray-300 text-gray-700"
                                 disabled={isProcessing}
                                 {...field}
                               />
@@ -265,11 +264,11 @@ const CheckoutPage = () => {
                         name="state"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-cream-light">State</FormLabel>
+                            <FormLabel className="text-gray-700">State</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="Yobe"
-                                className="bg-dark-darker text-cream-light"
+                                className="bg-white border-gray-300 text-gray-700"
                                 disabled={isProcessing}
                                 {...field}
                               />
@@ -280,7 +279,7 @@ const CheckoutPage = () => {
                       />
                     </div>
                     
-                    <div className="pt-6 border-t border-dark-darker">
+                    <div className="pt-6 border-t border-gray-200">
                       <h2 className="text-xl font-playfair font-medium text-gold mb-4">Payment Method</h2>
                       
                       <div className="space-y-4">
@@ -289,11 +288,11 @@ const CheckoutPage = () => {
                             type="radio"
                             id="paystack"
                             name="paymentMethod"
-                            className="w-4 h-4 text-gold bg-dark-darker border-dark-darker focus:ring-gold"
+                            className="w-4 h-4 text-gold bg-white border-gray-300 focus:ring-gold"
                             checked={paymentMethod === 'paystack'}
                             onChange={() => setPaymentMethod('paystack')}
                           />
-                          <label htmlFor="paystack" className="ml-2 text-cream-light">
+                          <label htmlFor="paystack" className="ml-2 text-gray-700">
                             Paystack (Credit/Debit Card)
                           </label>
                         </div>
@@ -303,11 +302,11 @@ const CheckoutPage = () => {
                             type="radio"
                             id="bank"
                             name="paymentMethod"
-                            className="w-4 h-4 text-gold bg-dark-darker border-dark-darker focus:ring-gold"
+                            className="w-4 h-4 text-gold bg-white border-gray-300 focus:ring-gold"
                             checked={paymentMethod === 'bank'}
                             onChange={() => setPaymentMethod('bank')}
                           />
-                          <label htmlFor="bank" className="ml-2 text-cream-light">
+                          <label htmlFor="bank" className="ml-2 text-gray-700">
                             Bank Transfer
                           </label>
                         </div>
@@ -329,10 +328,10 @@ const CheckoutPage = () => {
             </div>
             
             <div className="space-y-6">
-              <div className="bg-dark-light rounded-lg border border-dark-darker p-6">
+              <div className="bg-white rounded-lg border border-gray-200 p-6">
                 <h2 className="text-xl font-playfair font-medium text-gold mb-4">Order Summary</h2>
                 
-                <div className="space-y-4 divide-y divide-dark-darker">
+                <div className="space-y-4 divide-y divide-gray-200">
                   {cartItems.map((item) => (
                     <div key={item.id} className="flex py-3">
                       <div className="w-16 h-16 flex-shrink-0">
@@ -343,8 +342,8 @@ const CheckoutPage = () => {
                         />
                       </div>
                       <div className="ml-4 flex-1">
-                        <p className="text-cream-light text-sm font-medium">{item.name}</p>
-                        <p className="text-cream-light/70 text-xs">Quantity: {item.quantity || 1}</p>
+                        <p className="text-gray-700 text-sm font-medium">{item.name}</p>
+                        <p className="text-gray-500 text-xs">Quantity: {item.quantity || 1}</p>
                         <p className="text-gold text-sm mt-1">
                           {formatPrice((item.discountPrice || item.price) * (item.quantity || 1))}
                         </p>
@@ -353,14 +352,14 @@ const CheckoutPage = () => {
                   ))}
                 </div>
                 
-                <div className="border-t border-dark-darker mt-4 pt-4 space-y-2">
-                  <div className="flex justify-between text-cream-light/70">
+                <div className="border-t border-gray-200 mt-4 pt-4 space-y-2">
+                  <div className="flex justify-between text-gray-500">
                     <span>Subtotal</span>
-                    <span className="text-cream-light">{formatPrice(getTotalPrice())}</span>
+                    <span className="text-gray-700">{formatPrice(getTotalPrice())}</span>
                   </div>
-                  <div className="flex justify-between text-cream-light/70">
+                  <div className="flex justify-between text-gray-500">
                     <span>Shipping</span>
-                    <span className="text-cream-light">Free</span>
+                    <span className="text-gray-700">Free</span>
                   </div>
                   <div className="flex justify-between font-medium pt-2 text-gold">
                     <span>Total</span>
@@ -369,16 +368,16 @@ const CheckoutPage = () => {
                 </div>
               </div>
               
-              <div className="bg-dark-light rounded-lg border border-dark-darker p-6">
+              <div className="bg-white rounded-lg border border-gray-200 p-6">
                 <h3 className="text-xl font-playfair font-medium text-gold mb-4">Need Help?</h3>
-                <p className="text-cream-light/70 mb-4">
+                <p className="text-gray-500 mb-4">
                   If you have any questions about your order, feel free to contact us.
                 </p>
                 <div className="space-y-2 text-sm">
-                  <p className="flex items-center text-cream-light/80">
+                  <p className="flex items-center text-gray-600">
                     <span className="text-gold mr-2">•</span> Phone: 08066014844, 08165997050
                   </p>
-                  <p className="flex items-center text-cream-light/80">
+                  <p className="flex items-center text-gray-600">
                     <span className="text-gold mr-2">•</span> Email: luminarygiftstore@gmail.com
                   </p>
                 </div>
