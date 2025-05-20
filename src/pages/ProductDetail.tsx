@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -486,18 +485,17 @@ const ProductDetail = () => {
             <h2 className="text-2xl font-playfair font-medium text-gold mb-6">Related Products</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedProducts.map((relatedProduct) => (
-                <div key={relatedProduct.id} className="product-card group">
+                <div 
+                  key={relatedProduct.id} 
+                  className="product-card group cursor-pointer"
+                  onClick={() => handleRelatedProductClick(relatedProduct.id)}
+                >
                   <div className="relative overflow-hidden">
-                    <div
-                      onClick={() => handleRelatedProductClick(relatedProduct.id)}
-                      className="cursor-pointer"
-                    >
-                      <img
-                        src={relatedProduct.image}
-                        alt={relatedProduct.name}
-                        className="product-image"
-                      />
-                    </div>
+                    <img
+                      src={relatedProduct.image}
+                      alt={relatedProduct.name}
+                      className="product-image"
+                    />
                     {relatedProduct.isNew && (
                       <div className="absolute top-4 left-4 bg-gold text-white px-2 py-1 text-xs font-medium rounded">
                         New Arrival
@@ -511,7 +509,10 @@ const ProductDetail = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-white/50 to-transparent opacity-0 group-hover:opacity-60 transition-opacity"></div>
                     <Button 
                       className="absolute bottom-4 left-1/2 transform -translate-x-1/2 translate-y-10 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 btn-primary"
-                      onClick={() => addToCart({ ...relatedProduct, quantity: 1 })}
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent navigation when clicking the button
+                        addToCart({ ...relatedProduct, quantity: 1 });
+                      }}
                     >
                       <ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart
                     </Button>
@@ -523,14 +524,9 @@ const ProductDetail = () => {
                         <span className="ml-1 text-sm">{relatedProduct.rating}</span>
                       </div>
                     </div>
-                    <div 
-                      className="cursor-pointer"
-                      onClick={() => handleRelatedProductClick(relatedProduct.id)}
-                    >
-                      <h3 className="font-playfair text-xl font-medium text-gray-900 mb-1 hover:text-gold transition-colors">
-                        {relatedProduct.name}
-                      </h3>
-                    </div>
+                    <h3 className="font-playfair text-xl font-medium text-gray-900 mb-1 hover:text-gold transition-colors">
+                      {relatedProduct.name}
+                    </h3>
                     <div className="flex items-center space-x-2">
                       <span className="text-gold font-medium">
                         {formatPrice(relatedProduct.discountPrice || relatedProduct.price)}
